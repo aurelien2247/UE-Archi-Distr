@@ -1,0 +1,30 @@
+# Définition des requêtes disponibles pour le service Movie
+type Query { 
+    movie_with_id(_id: String!): Movie
+    get_movie_by_title(title: String!): Movie
+}
+
+# Définition des mutations disponibles pour le service Movie
+type Mutation {
+    update_movie_rate(_id: String!, _rate: Float!): Movie
+    add_movie(_id: String!, title: String!, director: String!, rating: Float!): Movie
+    delete_movie(_id: String!): Movie
+}
+
+# Définition du type Movie
+type Movie {
+    id: String!
+    title: String!
+    director: String!
+    rating: Float!
+    actors: [Actor]
+}
+
+# Définition du type Actor
+type Actor {
+    id: String!
+    firstname: String!
+    lastname: String!
+    birthyear: Int!
+    films: [String!]
+}

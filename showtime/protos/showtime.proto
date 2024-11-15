@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package showtime;
+
+// Message pour une requête de récupération de tous les horaires
+message GetShowtimesRequest {
+    // Aucun champ requis pour cette requête
+}
+
+// Message pour la réponse contenant tous les horaires
+message GetShowtimesResponse {
+    repeated Showtime showtimes = 1; // Liste des horaires
+}
+
+// Message pour une requête de récupération des horaires par date
+message GetShowtimesByDateRequest {
+    string date = 1;  // Date au format "YYYYMMDD"
+}
+
+// Message pour une réponse contenant les horaires pour une date spécifique
+message GetShowtimesByDateResponse {
+    Showtime showtime = 1;  // Les horaires pour la date demandée
+}
+
+// Message pour représenter un horaire
+message Showtime {
+    string date = 1;  // La date des horaires
+    repeated string movies = 2;  // Liste des films disponibles pour cette date
+}
+
+// Service Showtime
+service ShowtimeService {
+    // RPC pour récupérer tous les horaires
+    rpc GetShowtimes(GetShowtimesRequest) returns (GetShowtimesResponse);
+    
+    // RPC pour récupérer les horaires par date
+    rpc GetShowtimesByDate(GetShowtimesByDateRequest) returns (GetShowtimesByDateResponse);
+}

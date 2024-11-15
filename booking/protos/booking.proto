@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package booking;
+
+// Message pour représenter un film dans une réservation
+message Movie {
+    string id = 1;  // ID du film
+}
+
+// Message pour représenter une réservation pour une date spécifique
+message BookingDate {
+    string date = 1;  // Date au format "YYYYMMDD"
+    repeated Movie movies = 2;  // Liste des films réservés pour cette date
+}
+
+// Message pour représenter une réservation pour un utilisateur
+message Booking {
+    string userid = 1;  // Identifiant de l'utilisateur
+    repeated BookingDate dates = 2;  // Liste des réservations par date
+}
+
+// Message pour une requête de récupération de toutes les réservations
+message GetBookingsRequest {}
+
+// Message pour une réponse contenant toutes les réservations
+message GetBookingsResponse {
+    repeated Booking bookings = 1;  // Toutes les réservations
+}
+
+// Message pour une requête de récupération des réservations par utilisateur
+message GetBookingByUserRequest {
+    string userid = 1;  // ID de l'utilisateur
+}
+
+// Message pour une réponse contenant la réservation pour un utilisateur spécifique
+message GetBookingByUserResponse {
+    Booking booking = 1;  // La réservation de l'utilisateur
+}
+
+// Message pour une requête d'ajout de réservation
+message AddBookingRequest {
+    string userid = 1;  // ID de l'utilisateur
+    BookingDate date = 2;  // Les détails de la réservation (date et films)
+}
+
+// Message pour une réponse après avoir ajouté une réservation
+message AddBookingResponse {
+    string message = 1;  // Message de succès ou d'erreur
+}
+
+// Service Booking
+service BookingService {
+    // Récupérer toutes les réservations
+    rpc GetBookings (GetBookingsRequest) returns (GetBookingsResponse);
+
+    // Récupérer les réservations d'un utilisateur spécifique
+    rpc GetBookingByUser (GetBookingByUserRequest) returns (GetBookingByUserResponse);
+
+    // Ajouter une réservation pour un utilisateur
+    rpc AddBooking (AddBookingRequest) returns (AddBookingResponse);
+}
