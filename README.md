@@ -11,6 +11,7 @@ Ce projet constitue une application simple pour gérer les films et les réserva
 
 <img src="/conception.png" alt="Diagramme  conceptuel de la solution"/>
 
+## Introduction <a name="details-des-composants" />
 - 🎥 **Movie** : Ce micro-service est responsable de la gestion des films disponibles dans le cinéma. Il utilise une base de données JSON pour stocker les informations sur les films, y compris le titre, la note, le réalisateur, et un identifiant unique.
 ```json
 // Exemple de configuration pour un film
@@ -63,12 +64,23 @@ Ce projet constitue une application simple pour gérer les films et les réserva
     }
 ```
 ## Lancement <a name="launch" />
-Pour lancer les 4 micro-services en simultané, il suffit de lancer le script ```launch.py``` situé à la racine du projet soit en double cliquant dessus, soit en faisant ```chemin/vers/le/projet> start ./launch.py``` dans un terminal.
-> ⚠ Il est nécessaire d'avoir python d'installé sur son poste.
+Pour lancer les 4 micro-services, réalisez cette série de commandes:
+- Dans un premier terminal on lance le micro-service **movie**:
+cd movie
+python movie.py
 
-Le script va d'abord lancer un environnement virtuel python puis y installer les dépendances communes qu'utilise les micro-services.
+- Dans un deuxieme terminal on lance le micro-service **user**:
+cd user
+python user.py
 
-Si tout se déroule bien, vous devriez voir le mot FINISH dessiné dans la fenêtre de lancement suivie des 4 serveurs de développements des micro-services.
+- Dans un troisieme terminal on lance le micro-service **showtime**:
+cd showtime
+python showtime.py
+Il peut être nécéssaire de compiler le proto, pour cela dans le dossier **showtime**:
+python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. showtime.proto
 
-C'est dans cette fenêtre que vous pourrez suivre en temps réel l'utilisation de l'application et les différents appels qui sont effectués.
-<img src="/trace.png" alt="Screenshot de la fenêtre actie lié à launch.py" />
+- Dans un quatrieme terminal on lance le micro-service **booking**:
+cd showtime
+python showtime.py
+Il peut être nécéssaire de compiler le proto, pour cela dans le dossier **booking**:
+python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. booking.proto

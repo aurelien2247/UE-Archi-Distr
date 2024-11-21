@@ -1,6 +1,8 @@
 from ariadne import graphql_sync, make_executable_schema, load_schema_from_path, ObjectType, QueryType, MutationType
 from flask import Flask, make_response, render_template, request, jsonify
 import resolvers as r
+import json
+import os
 
 # Configuration des paramètres du serveur
 PORT = 3001
@@ -8,6 +10,7 @@ HOST = '0.0.0.0'
 app = Flask(__name__)
 
 # Chargement des définitions de schéma GraphQL depuis un fichier
+
 type_defs = load_schema_from_path('movie.graphql')
 
 # Définition des types GraphQL : requêtes et mutations
@@ -28,9 +31,31 @@ mutation.set_field('delete_movie', r.delete_movie)
 # Ajout du champ 'actors' au type 'Movie'
 movie.set_field('actors', r.resolve_actors_in_movie)
 
+# Obtenir le chemin du répertoire du script en cours
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construire le chemin du fichier JSON en fonction du répertoire du script
+json_file_path = os.path.join(script_dir, 'data', 'movies.json')
+
+# Vérifier si le fichier existe
+if not os.path.exists(json_file_path):
+    raise FileNotFoundError(f"Le fichier {json_file_path} est introuvable.")
+# Charger la base de données JSON
+with open(json_file_path, "r") as jsf:
+    movies = json.load(jsf)["movies"]
+
 # Création du schéma exécutable à partir des types et des résolveurs
 schema = make_executable_schema(type_defs, movie, query, mutation, actor)
-
+@app.route("/help", methods=['GET'])
+def get_help():
+    return make_response(render_template('help.html'),200)
+@app.route("/template", methods=['GET'])
+def template():
+    return make_response(render_template('index.html'),200)
+@app.route("/json", methods=['GET'])
+def get_json():
+    res = make_response(jsonify(movies), 200)
+    return res
 # Point d'entrée racine pour le service
 @app.route("/", methods=['GET'])
 def home():

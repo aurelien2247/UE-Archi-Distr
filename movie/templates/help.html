@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation API</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+
+        }
+
+        h1 {
+            text-align: center;
+            color: #f0f0f0;
+        }
+
+        .command-container {
+            max-width: 800px;
+
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #333;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .request-type {
+            font-weight: bold;
+            background-color: #444;
+            color: #fff;
+            padding: 5px 10px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .path {
+            font-size: 1.1em;
+            margin-left: 20px;
+            flex-grow: 1;
+        }
+
+        .description {
+            margin-left: 20px;
+            font-style: italic;
+            flex-grow: 2;
+        }
+
+        .json-body {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        .json-header {
+            color: #868686;
+            font-style: italic;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Liste des commandes possibles sur le composant <span style="color: #1e90ff">Movie</span></h1>
+<div style="margin: 10px">URI : <span style="color: #1e90ff">http://127.0.0.1:3200</span></div>
+<div style="display: block">
+    <div class="command-container">
+        <div class="header">
+            <div class="request-type">GET</div>
+            <div class="path">/</div>
+            <div class="description">Page d'accueil du composant</div>
+        </div>
+    </div>
+
+    <div class="command-container">
+        <div class="header">
+            <div class="request-type">GET</div>
+            <div class="path">/template</div>
+            <div class="description">Page d'accueil du composant mais avec template</div>
+        </div>
+    </div>
+
+    <div class="command-container">
+        <div class="header">
+            <div class="request-type">GET</div>
+            <div class="path">/help</div>
+            <div class="description">Obtenir la liste des commandes disponibles.</div>
+        </div>
+    </div>
+
+    <div class="command-container">
+        <div class="header">
+            <div class="request-type">GET</div>
+            <div class="path">/json</div>
+            <div class="description">Obtenir la liste des films au format JSON.</div>
+        </div>
+    </div>
+
+ 
+</div>
+</body>
+</html>
