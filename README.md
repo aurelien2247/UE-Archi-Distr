@@ -64,7 +64,7 @@ Ce projet constitue une application simple pour gérer les films et les réserva
 ```
 ## Lancement <a name="launch" />
 Pour lancer les 4 micro-services en simultané, il suffit de lancer le script ```launch.py``` situé à la racine du projet soit en double cliquant dessus, soit en faisant ```chemin/vers/le/projet> start ./launch.py``` dans un terminal.
-> ⚠ Il est nécessaire d'avoir python d'intallé sur son poste.
+> ⚠ Il est nécessaire d'avoir python d'installé sur son poste.
 
 Le script va d'abord lancer un environnement virtuel python puis y installer les dépendances communes qu'utilise les micro-services.
 
