@@ -6,7 +6,7 @@
 - [Lancement](#lancement)
 - [Test avec Postman](#test-avec-postman)
 
-## Introduction <a name="introduction" />
+## Détails des composants <a name="introduction" />
 Ce projet constitue une application simple pour gérer les films et les réservations d’utilisateurs dans un cinéma. L'application est composée de plusieurs micro-services, à savoir : **Showtime**, **Booking**, **User**, et **Movie**. Le micro service **User** communiquera avec le micro-service **Booking** et lui meme avec **Showtime** via gRPC pour une meilleure performance et évolutivité. La communication entre **User**, et **Movie** elle ce fera en Graphql.
 
 <img src="/conception.png" alt="Diagramme  conceptuel de la solution"/>
@@ -63,8 +63,10 @@ Ce projet constitue une application simple pour gérer les films et les réserva
       ]
     }
 ```
-## Lancement <a name="launch" />
+## Lancement <a name="Lancement" />
 Pour lancer les 4 micro-services, réalisez cette série de commandes:
+Pour installer les requirements:
+pip install -r requirements.txt
 - Dans un premier terminal on lance le micro-service **movie**:
 cd movie
 python movie.py
