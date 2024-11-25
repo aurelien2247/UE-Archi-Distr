@@ -64,25 +64,6 @@ Ce projet constitue une application simple pour gérer les films et les réserva
     }
 ```
 ## Lancement <a name="Lancement" />
-Pour lancer les 4 micro-services, réalisez cette série de commandes:
-Pour installer les requirements:
-pip install -r requirements.txt
-- Dans un premier terminal on lance le micro-service **movie**:
-cd movie
-python movie.py
+Pour lancer les 4 micro-services, veuillez lancer le launcher.bat
 
-- Dans un deuxieme terminal on lance le micro-service **user**:
-cd user
-python user.py
-
-- Dans un troisieme terminal on lance le micro-service **showtime**:
-cd showtime
-python showtime.py
-Il peut être nécéssaire de compiler le proto, pour cela dans le dossier **showtime**:
-python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. showtime.proto
-
-- Dans un quatrieme terminal on lance le micro-service **booking**:
-cd showtime
-python showtime.py
-Il peut être nécéssaire de compiler le proto, pour cela dans le dossier **booking**:
-python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. booking.proto
+Pour avoir accès aux différentes requettes Postman contactez aurelien moignet sur l'email: aurelien.moignet22470@gmail.com 
